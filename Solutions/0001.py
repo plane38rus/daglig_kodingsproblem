@@ -26,4 +26,19 @@ def foo1():
     return new_list
 
 
-print(foo1())
+def foo2():
+    # No division, uses slices, but still quite slow.
+    new_list = []
+    for i in range(len(list)):
+        left_slice = list[:i]
+        right_slice = list[i+1:]
+        slices = left_slice + right_slice
+        product = 1
+        for j in range(len(slices)):
+            product *= slices[j]
+        new_list.append(product)
+
+    return new_list
+
+
+print(foo2())
