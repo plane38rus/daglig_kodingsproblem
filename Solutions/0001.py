@@ -9,3 +9,21 @@
 # expected output would be [2, 3, 6].
 #
 # Follow-up: what if you can't use division?
+
+# list = [1, 2, 3, 4, 5]
+list = [2, 2, 3, 2, 2]
+
+
+def foo1():
+    # Uses division.
+    new_list = []
+    for i in range(len(list)):
+        product = 1
+        for j in range(len(list)):
+            product *= list[j]
+        new_list.append(product / list[i])
+
+    return new_list
+
+
+print(foo1())
