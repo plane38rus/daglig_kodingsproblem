@@ -11,10 +11,13 @@
 # Follow-up: what if you can't use division?
 
 import random
+import math
+import timeit
 
-list = [1, 2, 3, 4, 5]
+# list = [1, 2, 3, 4, 5]
 # list = [2, 2, 3, 2, 2]
-# list = [random.randint(1, 100) for i in range(100)]  # This is huge.
+# list = [random.randint(1, 10) for i in range(1000)]  # This is huge.
+list = [i for i in range(1, 100)]
 
 
 def foo1():
@@ -24,7 +27,8 @@ def foo1():
         product = 1
         for j in range(len(list)):
             product *= list[j]
-        new_list.append(product / list[i])
+        # Floor division to keep integers.
+        new_list.append(product // list[i])
 
     return new_list
 
@@ -46,8 +50,6 @@ def foo2():
 
 def foo3():
     # List comprehension one liner that actually works lol.
-    import math
-
     product = 1
     new_list = [math.prod([product * j for j in list[:i] + list[i+1:]])
                 for i in range(len(list))]
@@ -55,4 +57,7 @@ def foo3():
     return new_list
 
 
-print(foo3())
+# Pretty much the same time, but foo3 looks the fastest.
+print(timeit.timeit(foo1, number=100))
+print(timeit.timeit(foo2, number=100))
+print(timeit.timeit(foo3, number=100))
