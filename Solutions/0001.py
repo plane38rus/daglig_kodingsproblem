@@ -57,7 +57,35 @@ def foo3():
     return new_list
 
 
-# Pretty much the same time, but foo3 looks the fastest.
-print(timeit.timeit(foo1, number=100))
-print(timeit.timeit(foo2, number=100))
-print(timeit.timeit(foo3, number=100))
+def foo4():
+    # Internet solution. O(n^2).
+    output = []
+    product = 1
+    for number in list:
+        for i in range(len(output)):
+            output[i] *= number
+        output.append(product)
+        product *= number
+    return output
+
+
+def foo5():
+    # Another Internet solution. O(n). The fastest.
+    output = []
+    right = 1
+    for number in reversed(list):
+        output.insert(0, right)
+        right *= number
+    left = 1
+    for i, number in enumerate(list):
+        output[i] *= left
+        left *= number
+    return output
+
+
+# # First 3 are almost the same, 4th is a bit faster, 5th 10x faster.
+# print(timeit.timeit(foo1, number=100))
+# print(timeit.timeit(foo2, number=100))
+# print(timeit.timeit(foo3, number=100))
+# print(timeit.timeit(foo4, number=100))
+# print(timeit.timeit(foo5, number=100))
