@@ -10,8 +10,11 @@
 #
 # Follow-up: what if you can't use division?
 
-# list = [1, 2, 3, 4, 5]
-list = [2, 2, 3, 2, 2]
+import random
+
+list = [1, 2, 3, 4, 5]
+# list = [2, 2, 3, 2, 2]
+# list = [random.randint(1, 100) for i in range(100)]  # This is huge.
 
 
 def foo1():
@@ -41,4 +44,15 @@ def foo2():
     return new_list
 
 
-print(foo2())
+def foo3():
+    # List comprehension one liner that actually works lol.
+    import math
+
+    product = 1
+    new_list = [math.prod([product * j for j in list[:i] + list[i+1:]])
+                for i in range(len(list))]
+
+    return new_list
+
+
+print(foo3())
